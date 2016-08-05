@@ -46,13 +46,9 @@ angular
  * Controller of the wats4000App
  */
 angular.module('wats4000App')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+.controller('MainCtrl', ["$scope", "current", function ($scope, current) {
+  $scope.current = current.query();
+}]);
 
 'use strict';
 
@@ -72,6 +68,49 @@ angular.module('wats4000App')
     ];
   });
 
+'use strict';
+
+/**
+ * @ngdoc service
+ * @name wats4000App.current
+ * @description
+ * # current
+ * Factory in the wats4000App.
+ */
+
+          // location: null
+          // Only images from The Commons
+          // Longitude (lon)
+          // Latitude (lat)
+          // geo_context
+          // tags
+          // extras
+          // Street Address
+          // Intersection
+          // Street
+          // Neighborhood
+          // City
+          // State/Province/Region
+          // Country
+
+
+  angular.module('wats4000App')
+  .factory('current', ["$resource", function ($resource) {
+    // Service logic
+    // ...
+
+    // Public API here
+    return $resource('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=87f2686b12488c018926068ec8881545&tags=West+Seattle&extras=url_t%2C+url_q&format=json&nojsoncallback=1&', {}, {
+      query: {
+        method:'GET',
+        params:{
+          tag: ''
+        },
+        isArray:false
+      }
+    });
+  }]);
+
 angular.module('wats4000App').run(['$templateCache', function($templateCache) {
   'use strict';
 
@@ -81,7 +120,7 @@ angular.module('wats4000App').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('views/main.html',
-    "<div class=\"jumbotron\"> <h1>Mary's Marvelous Time Machine</h1> <p class=\"lead\"> <img src=\"images/yeoman.png\" alt=\"I'm Yeoman\"><br> Ever wonder who was here before you? </p> <p><a class=\"btn btn-lg btn-success\" ng-href=\"#/\">Splendid!<span class=\"glyphicon glyphicon-ok\"></span></a></p> </div> <div class=\"row marketing\"> <h4>HTML5 Boilerplate</h4> <p> HTML5 Boilerplate is a professional front-end template for building fast, robust, and adaptable web apps or sites. </p> <h4>Angular</h4> <p> AngularJS is a toolset for building the framework most suited to your application development. </p> <h4>Karma</h4> <p>Spectacular Test Runner for JavaScript.</p> </div>"
+    "<div ng-app class=\"jumbotron\" ng-controller=\"MainCtrl\"> <h1>Mary's Marvelous Time Machine</h1> <p class=\"lead\"> <div ng-init=\"location='Seattle'\"> <p> <label for=\"location\">Where are you standing? <input type=\"text\" name=\"location\" ng-model=\"location\"> </label> </p> <p> <button class=\"btn btn-lg btn-primary\" ng-click=\"refreshCurrent()\">Blast Off</button> </p> <dl> <dt>Currently</dt> <dd> <img ng-src=\"{{current.photos.photo[0].url_q}}\"></dd> <dd>{{current.weather[0].description}}</dd> <dt>Temperature</dt> <dd>{{current.main.temp}}</dd> <dt>Wind</dt> <dd>{{current.wind.speed}} mph at {{current.wind.deg}} degrees</dd> <dt>Clouds</dt> <dd>{{current.clouds.all}}%</dd> </dl> </div> </p> </div>"
   );
 
 }]);

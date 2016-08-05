@@ -8,10 +8,6 @@
  * Controller of the wats4000App
  */
 angular.module('wats4000App')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+.controller('MainCtrl', function ($scope, current) {
+  $scope.current = current.query();
+});
