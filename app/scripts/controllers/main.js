@@ -9,5 +9,16 @@
  */
 angular.module('wats4000App')
 .controller('MainCtrl', function ($scope, current) {
-  $scope.current = current.query();
+  $scope.tags = "West Seattle";
+  $scope.photos = current.query({
+    tags: $scope.tags
+  });
+
+  $scope.blastoff = function () {
+    $scope.photos = current.query({
+      tags: $scope.tags
+      //lat: $scope.lat,
+      //lon: $scope.lon
+    });
+  };
 });

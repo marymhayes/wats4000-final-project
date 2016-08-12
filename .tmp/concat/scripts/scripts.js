@@ -47,7 +47,18 @@ angular
  */
 angular.module('wats4000App')
 .controller('MainCtrl', ["$scope", "current", function ($scope, current) {
-  $scope.current = current.query();
+  $scope.tags = "West Seattle";
+  $scope.photos = current.query({
+    tags: $scope.tags
+  });
+
+  $scope.blastoff = function () {
+    $scope.photos = current.query({
+      tags: $scope.tags
+      //lat: $scope.lat,
+      //lon: $scope.lon
+    });
+  };
 }]);
 
 'use strict';
@@ -99,14 +110,16 @@ angular.module('wats4000App')
     // Service logic
     // ...
 // https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=87f2686b12488c018926068ec8881545&tags=West+Seattle&extras=url_t%2C+url_q&format=json&nojsoncallback=1&
+// &lat=:lat&lon=:lon
+
     // Public API here
-    return $resource('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e283f36de4cdc9e73178b9c438b2de7&tags=West+Seattle&extras=url_t%2C+url_q&format=json&nojsoncallback=1&', {}, {
+    return $resource('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e283f36de4cdc9e73178b9c438b2de7&tags=:tags&extras=url_t%2C+url_q&format=json&nojsoncallback=1&', {}, {
       query: {
         method:'GET',
         params:{
-          tag: null
-          //lat: '',
-          //lon: '',
+          tags: null
+          //lat: null,
+          //lon: null
           //geo: ''
         },
         isArray:false
@@ -123,7 +136,7 @@ angular.module('wats4000App').run(['$templateCache', function($templateCache) {
 
 
   $templateCache.put('views/main.html',
-    "<div ng-app class=\"jumbotron\" ng-controller=\"MainCtrl\"> <h1>Mary's Marvelous Time Machine</h1> <p class=\"lead\"> <div ng-init=\"location='Seattle'\"> <p> <label for=\"location\">Where are you standing? <input type=\"text\" name=\"location\" ng-model=\"location\"> </label> </p> <p> <button class=\"btn btn-lg btn-primary\" ng-click=\"refreshCurrent()\">Blast Off</button> </p> <dl> <dt>Currently</dt> <dd> <img ng-src=\"{{current.photos.photo[0].url_q}}\"></dd> <dd>{{current.weather[0].description}}</dd> <dt>Temperature</dt> <dd>{{current.main.temp}}</dd> <dt>Wind</dt> <dd>{{current.wind.speed}} mph at {{current.wind.deg}} degrees</dd> <dt>Clouds</dt> <dd>{{current.clouds.all}}%</dd> </dl> </div> </p> </div>"
+    "<div ng-app class=\"jumbotron\" ng-controller=\"MainCtrl\"> <h1>Mary's Marvelous Time Machine</h1> <p class=\"lead\"> <div ng-init=\"location='Seattle'\"> <p> <label for=\"location\">Where are you standing? <input type=\"text\" name=\"tags\" ng-model=\"tags\"> </label> </p> <p> <button class=\"btn btn-lg btn-primary\" ng-click=\"blastoff()\">Blast Off</button> </p> <dl> <dt>Currently</dt> <dd> <img ng-src=\"{{photos.photos.photo[0].url_q}}\"></dd> <dd>{{current.weather[0].description}}</dd> <dt>Temperature</dt> <dd>{{current.main.temp}}</dd> <dt>Wind</dt> <dd>{{current.wind.speed}} mph at {{current.wind.deg}} degrees</dd> <dt>Clouds</dt> <dd>{{current.clouds.all}}%</dd> </dl> </div> </p> </div>"
   );
 
 }]);
