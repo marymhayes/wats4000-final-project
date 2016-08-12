@@ -28,13 +28,16 @@
   .factory('current', function ($resource) {
     // Service logic
     // ...
-
+// https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=87f2686b12488c018926068ec8881545&tags=West+Seattle&extras=url_t%2C+url_q&format=json&nojsoncallback=1&
     // Public API here
-    return $resource('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=87f2686b12488c018926068ec8881545&tags=West+Seattle&extras=url_t%2C+url_q&format=json&nojsoncallback=1&', {}, {
+    return $resource('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e283f36de4cdc9e73178b9c438b2de7&tags=West+Seattle&extras=url_t%2C+url_q&format=json&nojsoncallback=1&', {}, {
       query: {
         method:'GET',
         params:{
-          tag: ''
+          tag: null
+          //lat: '',
+          //lon: '',
+          //geo: ''
         },
         isArray:false
       }
