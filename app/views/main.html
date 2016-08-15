@@ -1,4 +1,5 @@
 <div ng-app class="jumbotron" ng-controller="MainCtrl">
+  <img src= "/time_machine_graphic.jpg" id="spiral" alt="Black and white swirl graphic">
   <h1>Mary's Marvelous Time Machine</h1>
   <p class="lead">
     <div ng-init="location='Seattle'">
@@ -11,15 +12,15 @@
           <button class="btn btn-lg btn-primary" ng-click="blastoff()">Blast Off</button>
         </p>
       <dl>
-        <dt>Currently</dt>
+        <!--<dt>Currently</dt>-->
         <dd> <img ng-src= "{{photos.photos.photo[0].url_q}}"></dd>
-        <dd>{{current.weather[0].description}}</dd>
+        <!--<dd>{{current.weather[0].description}}</dd>
         <dt>Temperature</dt>
         <dd>{{current.main.temp}}</dd>
         <dt>Wind</dt>
         <dd>{{current.wind.speed}} mph at {{current.wind.deg}} degrees</dd>
         <dt>Clouds</dt>
-        <dd>{{current.clouds.all}}%</dd>
+        <dd>{{current.clouds.all}}%</dd>-->
       </dl>
     </div>
   </p>

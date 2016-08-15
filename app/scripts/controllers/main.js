@@ -9,7 +9,7 @@
  */
 angular.module('wats4000App')
 .controller('MainCtrl', function ($scope, current) {
-  $scope.tags = "West Seattle";
+  $scope.tags = "";
   $scope.photos = current.query({
     tags: $scope.tags
   });
