@@ -32,7 +32,7 @@
 // &lat=:lat&lon=:lon
 
     // Public API here
-    return $resource('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e283f36de4cdc9e73178b9c438b2de7&tags=:tags&extras=url_t%2C+url_q&format=json&nojsoncallback=1&', {}, {
+    return $resource('https://api.flickr.com/services/rest/?method=flickr.photos.search&api_key=8e283f36de4cdc9e73178b9c438b2de7&tags=:tags&is_commons=true&extras=path_alias%2C+description%2C+url_l&format=json&nojsoncallback=1&', {}, {
       query: {
         method:'GET',
         params:{
@@ -44,4 +44,5 @@
         isArray:false
       }
     });
+
   });
