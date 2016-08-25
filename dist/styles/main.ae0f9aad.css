@@ -5735,6 +5735,16 @@ div[ng-view].ng-enter {
 div[ng-view].ng-leave {
   animation: fadeOut 0.5s; }
 
+.glyphicon.spinning {
+  animation: spin 1s infinite linear;
+  -webkit-animation: spin2 1s infinite linear; }
+
+@keyframes spin {
+  from {
+    transform: scale(1) rotate(0deg); }
+  to {
+    transform: scale(1) rotate(360deg); } }
+
 .browsehappy {
   margin: 0.2em 0;
   background: #ccc;
@@ -5742,7 +5752,8 @@ div[ng-view].ng-leave {
   padding: 0.2em 0; }
 
 body {
-  padding: 0; }
+  padding: 0;
+  color: #061906; }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
 .header,
@@ -5778,7 +5789,8 @@ body {
   background-color: #fff; }
   .jumbotron .btn {
     font-size: 21px;
-    padding: 14px 24px; }
+    padding: 14px 24px;
+    background-color: #114011; }
 
 /* Supporting marketing content */
 .marketing {
