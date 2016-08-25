@@ -8,7 +8,27 @@
  * Controller of the wats4000App
  */
 angular.module('wats4000App')
-.controller('MainCtrl', function ($scope, $routeParams, current, $localStorage) {
+.controller('MainCtrl', function ($scope, current, $timeout) {
+
+ $scope.searchButtonText = "Blast Off";
+ $scope.test = "false";
+
+ $scope.blastoff = function () {
+   $scope.test = "true";
+   $scope.searchButtonText = "Taking Off";
+
+   $scope.photos = current.query({
+     tags: $scope.tags
+     //lat: $scope.lat,
+     //lon: $scope.lon
+   });
+
+   $timeout(function(){
+     $scope.searchButtonText = "Blast Off";
+   }, 1500);
+ };
+});
+/*.controller('MainCtrl', function ($scope, $routeParams, current, $localStorage) {
   $scope.tags = "";
   //$scope.photos = current.query({
   //  tags: $scope.tags
@@ -49,4 +69,4 @@ angular.module('wats4000App')
       }
     }
   };
-});
+});*/
