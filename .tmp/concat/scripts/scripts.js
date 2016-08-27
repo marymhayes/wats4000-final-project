@@ -112,7 +112,7 @@ angular.module('MMTimeMachine')
 
   }]);
 
-angular.module('wats4000App').run(['$templateCache', function($templateCache) {
+angular.module('MMTimeMachine').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('views/about.html',
