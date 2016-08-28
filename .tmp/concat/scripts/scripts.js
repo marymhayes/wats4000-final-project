@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('MMTimeMachine', [
+  .module('wats4000App', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
@@ -46,7 +46,7 @@ angular
  * # MainCtrl
  * Controller of the wats4000App
  */
-angular.module('MMTimeMachine')
+angular.module('wats4000App')
 .controller('MainCtrl', ["$scope", "current", "$timeout", function ($scope, current, $timeout) {
 
  $scope.searchButtonText = "Blast Off";
@@ -77,7 +77,7 @@ angular.module('MMTimeMachine')
  * # AboutCtrl
  * Controller of the wats4000App
  */
-angular.module('MMTimeMachine')
+angular.module('wats4000App')
   .controller('AboutCtrl', function () {
     this.awesomeThings = [
       'HTML5 Boilerplate',
@@ -96,7 +96,7 @@ angular.module('MMTimeMachine')
  * Factory in the wats4000App.
  */
 
-  angular.module('MMTimeMachine')
+  angular.module('wats4000App')
   .factory('current', ["$resource", function ($resource) {
 
     // Public API here
@@ -112,7 +112,7 @@ angular.module('MMTimeMachine')
 
   }]);
 
-angular.module('MMTimeMachine').run(['$templateCache', function($templateCache) {
+angular.module('wats4000App').run(['$templateCache', function($templateCache) {
   'use strict';
 
   $templateCache.put('views/about.html',
