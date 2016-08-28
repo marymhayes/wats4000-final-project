@@ -8,7 +8,7 @@
  * Factory in the wats4000App.
  */
 
-  angular.module('MMTimeMachine')
+  angular.module('wats4000App')
   .factory('current', function ($resource) {
 
     // Public API here

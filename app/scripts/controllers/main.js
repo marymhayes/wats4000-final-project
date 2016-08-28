@@ -7,7 +7,7 @@
  * # MainCtrl
  * Controller of the wats4000App
  */
-angular.module('MMTimeMachine')
+angular.module('wats4000App')
 .controller('MainCtrl', function ($scope, current, $timeout) {
 
  $scope.searchButtonText = "Blast Off";

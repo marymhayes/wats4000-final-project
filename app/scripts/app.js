@@ -9,7 +9,7 @@
  * Main module of the application.
  */
 angular
-  .module('MMTimeMachine', [
+  .module('wats4000App', [
     'ngAnimate',
     'ngAria',
     'ngCookies',
